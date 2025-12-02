@@ -5,7 +5,7 @@ using namespace std;
 
 class Contact_Information
 {
-private:
+protected:
     string address;
     string email;
     string phone;
@@ -35,9 +35,9 @@ public:
         return email;
     }
 
-    void setPhone(const string &ph)
+    void setPhone(const string &phone)
     {
-        phone = ph;
+        this->phone = phone;
     }
 
     string getPhone() const
