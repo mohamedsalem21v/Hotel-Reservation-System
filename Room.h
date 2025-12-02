@@ -33,7 +33,7 @@ public:
       };
 
       Room(int roomNumber, int roomFloor, double roomPrice, RoomType roomType,
-           RoomStatus roomStatus = RoomStatus::Available) : ID(Object::Room)
+            RoomStatus roomStatus = RoomStatus::Available) : ID(Object::Room)
       {
             this->roomNumber = roomNumber;
             this->roomFloor = roomFloor;
@@ -65,8 +65,8 @@ public:
       void setRoomPrice(double p) { roomPrice = p; }
       void setRoomStatus(RoomStatus s) { roomStatus = s; }
       void setRoomType(RoomType t) { roomType = t; }
-      void setCheckIn(int d, int m, int y) { checkIn.setDate(d, m, y); }
-      void setCheckOut(int d, int m, int y) { checkOut.setDate(d, m, y); }
+      void setCheckIn( int day, int month, int year ) { checkIn = Date( day, month, year ) ;}
+      void setCheckOut( int day, int month, int year ) { checkOut = Date( day, month, year ) ;}
       void setCheckIn(const Date &t) { checkIn = t; }
       void setCheckOut(const Date &t) { checkOut = t; }
 

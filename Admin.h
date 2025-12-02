@@ -3,9 +3,8 @@
 
 #include <bits/stdc++.h>
 #include "Person.h"
-#include "Room.h"
 #include "Utils.h"
-#include "Rooms_category.h"
+#include "Hotel.h"
 
 using namespace std;
 
@@ -19,7 +18,7 @@ class Admin : public Person
 
     public :
 
-        Admin ( int SSN , Date age , Name name , Object type ) 
+        Admin ( int SSN , int age , Name name , Object type ) 
             : Person( SSN , age , name , Object::Admin ) {} ;
 
         PowerLevel getLevelPower() const { return levelPower; }

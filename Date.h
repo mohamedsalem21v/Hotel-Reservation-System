@@ -13,7 +13,7 @@ struct Date
     int year;
 
     Date() : day(1), month(1), year(2000) {};
-
+    Date( int day, int month, int year ) : day(day), month(month), year(year) {};
     bool validDate(Date &other) // to check if date is valid date or not  (with date)
     {
         int m = other.month, d = other.day, y = other.year;
@@ -59,7 +59,6 @@ struct Date
             return month < T.month;
         return day < T.day;
     }
-
     Date &operator=(const Date &other)
     {
         if (this == &other)
@@ -71,12 +70,34 @@ struct Date
 
         return *this;
     }
-
+    Date operator+( int n ) // Let's say that there are 12 months all with 30 days and the whole year is 360 days.
+    {
+        year += ( n / 360 ) ;
+        n %= 360 ;
+        month += n / 30 ;
+        n %= 30 ;
+        if ( month > 12 )
+        {
+            year++ ;
+            month %= 12 ;
+        }
+        day += n ;
+        if ( day > 30 )
+        {
+            month++ ;
+            if ( month > 12 )
+            {
+                year++ ;
+                month %= 12 ;
+            }
+            day %= 30 ;
+        }
+    }
     void display() const
     {
         cout << setw(2) << setfill('0') << day << "/"
-             << setw(2) << setfill('0') << month << "/"
-             << year << endl;
+            << setw(2) << setfill('0') << month << "/"
+            << year << endl;
     }
 
     friend ostream& operator<< ( ostream& out , Date obj )

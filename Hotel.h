@@ -12,8 +12,8 @@ class Hotel : public ID
     int roomsCount;
     int customersCount;
     string description;
-    vector<map<int, class::Room *>> Rooms; // (roomtype , (Id , room1))
-    map<int, class::Room *> RoomsByNumber;        // (roomNumber , room1)
+    static vector<map<int, class::Room *>> Rooms; // (roomtype , (Id , room1))
+    static map<int, class::Room *> RoomsByNumber;        // (roomNumber , room1)
 
 public:
     Hotel() : ID(Object::Hotel)
@@ -145,7 +145,17 @@ public:
             return it->second;
         return nullptr;
     }
-
+    static class::Room *find_room_to_book( RoomType type )
+    {
+        for ( auto &[ Id, room ] : Rooms[type] )
+        {
+            if ( room->getRoomStatus() == Available )
+            {
+                return room ;
+            }
+        }
+        return nullptr ;
+    }
     ~Hotel()
     {
         for (auto &typeGroup : Rooms)
